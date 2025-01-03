@@ -1,17 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchApi } from "../../hooks/useApiCall";
 
-export const fetchData = createAsyncThunk("data/fetchData", async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-  return response.json();
-});
-
-interface DataProps {
+export const fetchData = createAsyncThunk("data/fetchData", fetchApi);
+export interface DataProps {
   items: [];
   status: "idle" | "loading" | "succeeded" | "failed";
   error?: string | null;
 }
 
-export const initialState = {
+const initialState = {
   items: [],
   status: "idle",
   error: null,
