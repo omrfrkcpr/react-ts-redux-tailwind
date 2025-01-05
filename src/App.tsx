@@ -1,10 +1,12 @@
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import AppRouter from "./routes/AppRouter";
 
 function App() {
+  const [user, setState] = useState<User | null>(null);
+
   return (
     <Provider store={store}>
       <ErrorBoundary>
